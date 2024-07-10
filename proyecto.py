@@ -1,27 +1,30 @@
 from tkinter import *
 import tkinter as tk
-import time
 from datetime import datetime, timedelta
-from tkinter import PhotoImage,Label
-
-
 
 class PomodoroTimer:
     def __init__(self, root):
         self.root = root
         self.root.title("Tecnica Pomodoro")
-        self.root.geometry("400x300")
+        self.root.geometry("510x510")
         self.root.resizable(False, False)
         self.create_widgets()
         self.is_running = False
         self.start_time = None
         self.time_left = None
 
-
-
     def create_widgets(self):
         self.root.config(bg="#FFFAF0")
         
+        try:
+            self.img = tk.PhotoImage(file="tomato.png")
+        except tk.TclError as e:
+            print(f"Error loading image: {e}")
+            self.img = None
+        
+        if self.img:
+            self.lbl_img = tk.Label(self.root, image=self.img, bg="#FFFAF0")
+            self.lbl_img.pack(pady=10)             
 
         self.title_label = tk.Label(self.root, text="TECNICA POMODORO", font=("Helvetica", 20, "bold"), bg="#FFFAF0")
         self.title_label.pack(pady=10)
